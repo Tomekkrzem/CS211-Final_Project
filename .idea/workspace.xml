@@ -9,6 +9,15 @@
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="game" targetName="ge211" />
+      <config projectName="game" targetName="catch" />
+      <config projectName="game" targetName="fireworks" />
+      <config projectName="game" targetName="model_test" />
+      <config projectName="game" targetName="game" />
+    </generated>
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
@@ -24,6 +33,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -39,6 +49,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "ctest.advertisement.all.test.configuration.is.created": "true",
     "last_opened_file_path": "C:/Users/tomek/OneDrive/Documents/GitHub/CS211-FInal-2/final_project/CMakeLists.txt",
     "settings.editor.selected.configurable": "CPPToolchains",
     "vue.rearranger.settings.migration": "true"
@@ -98,7 +109,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685085078826</updated>
-      <workItem from="1685085081401" duration="108000" />
+      <workItem from="1685085081401" duration="195000" />
     </task>
     <task id="LOCAL-00001" summary="Code">
       <created>1685085166266</created>
@@ -107,11 +118,31 @@
       <option name="project" value="LOCAL" />
       <updated>1685085166266</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Code">
+      <created>1685085200040</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685085200040</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Code">
+      <created>1685085254457</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685085254457</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Code" />
