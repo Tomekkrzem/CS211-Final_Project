@@ -48,6 +48,10 @@ public:
 
     double accuracy;
 
+    double count_down;
+
+    bool begin_count;
+
 
 
 private:
@@ -105,4 +109,10 @@ private:
     ge211::Rectangle_sprite back_hover;
 
     ge211::Text_sprite accuracy_sprite;
+
+    ge211::Text_sprite count_down_sprite;
+
+    ge211::Font font_info4{"GamePlayedOutline-wrX8.ttf",
+                           (initial_window_dimensions().height
+                            / model_.Dims().height) * 30};
 };

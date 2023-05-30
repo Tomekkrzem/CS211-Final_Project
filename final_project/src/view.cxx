@@ -20,6 +20,9 @@ View::View(Model const& model)
           click_count(0),
           hit_count(0),
           accuracy(0),
+          count_down(4),
+          begin_count(false),
+
           model_(model),
           button_(model_.Dims().width,model_.Dims().height,
                   {initial_window_dimensions().width / 2,
@@ -61,7 +64,9 @@ View::View(Model const& model)
 
           back_hover(button_.button_dims, {216,147,134}),
 
-          accuracy_sprite()
+          accuracy_sprite(),
+
+          count_down_sprite()
 
 { }
 
@@ -147,6 +152,23 @@ View::draw(ge211::Sprite_set& set)
 //        }
 //    }
 
+    if (begin_count && count_down > 0) {
+        // Count Down Builder
+        ge211::Text_sprite::Builder name_builder(font_info4);
+
+        int count = count_down;
+
+        // Set Count Down color
+        name_builder.color({255,255,255}) << count;
+
+        // Updates the count_down sprite
+        count_down_sprite.reconfigure(name_builder);
+
+        set.add_sprite(count_down_sprite,
+                       center.left_by(model_.Dims().width).up_by(model_.Dims().height * 4) , 6);
+    }
+
+
 }
 
 View::Dimensions
@@ -200,18 +222,21 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
             set.add_sprite(game_board_sprite, {0, 0}, 4);
             showMainMenu = false;
             gamemode = 3;
+            begin_count = true;
         }
 
         if (button_.med_click(mouse_posn)) {
             set.add_sprite(game_board_sprite, {0, 0}, 4);
             showMainMenu = false;
             gamemode = 2;
+            begin_count = true;
         }
 
         if (button_.hard_click(mouse_posn)) {
             set.add_sprite(game_board_sprite, {0, 0}, 4);
             showMainMenu = false;
             gamemode = 1;
+            begin_count = true;
         }
     }
 
@@ -225,6 +250,8 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
             click_count = 0;
             hit_count = 0;
             accuracy = 0;
+            count_down = 4;
+            begin_count = false;
         }
     }
 }
@@ -255,7 +282,7 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
 
     radius = target_sprite.dimensions().width * gamemode * 2;
 
-    if (!showMainMenu) {
+    if (!showMainMenu && count_down <= 0) {
 
         if (target_clicked) {
             if (model_.hit_target(target_pos, mouse_posn, radius)) {
@@ -263,7 +290,6 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
                 target_clicked = true;
                 score += 100;
                 hit_count += 1;
-                //accuracy = (hit_count / click_count) * 100;
             }
         }
 
