@@ -50,20 +50,17 @@ public:
 
     Position random_spot(int radius, Dimensions dims) const;
 
-    int random_x(int radius, Dimensions dims) const;
-
-    int random_y(int radius, Dimensions dims) const;
-
-    bool game_over(int time, int lives) const;
-
     bool hit_target(Position,Position, int radius) const;
 
-    void target_animation(int time, int gamemode) const;
+    void target_animation(double time, int gamemode) const;
+
+    bool game_condition (double time, int lives);
 
 
 
 private:
     Scene game_scene;
+    bool game_over;
 };
 
 
@@ -82,6 +79,7 @@ public:
 
     Target(int radius, Position pos);
 
+//    Target next_target();
 
     bool hit_target(Position,Position, int radius) const;
 

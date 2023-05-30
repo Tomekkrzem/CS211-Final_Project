@@ -9,7 +9,8 @@ Controller::Controller(int width, int height)
         : model_(width, height),
           view_(model_),
           cursor(0,0),
-          click(0,0)
+          click(0,0),
+          rand_pos(0,0)
 
 {}
 
@@ -20,13 +21,13 @@ Controller::draw(ge211::Sprite_set& set)
     view_.draw_input(set,cursor);
     view_.button_input(set,click);
 
-    if (model_.hit_target(view_.target_pos,click,view_.radius)){
-        // view_.target_pos = model_.random_spot
-        //                                  (6,
-        //                                   initial_window_dimensions());
+    //if (model_.hit_target(view_.target_pos,click,view_.radius) && !model_.game_condition(view_.time,view_.lives)){
+        //view_.target_pos = rand_pos;
 
+    if (!model_.game_condition(view_.time,view_.lives)){
         view_.target_click(set,click);
     }
+    //view_.target_click(set,click);
 
 }
 
@@ -45,12 +46,23 @@ void
 Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
 {
     click = pos;
+
+    if (!view_.target_clicked) {
+        view_.time = 30;
+        view_.lives = 3;
+    }
+
+    if (model_.hit_target(view_.target_pos, click, view_.radius)) {
+        view_.target_clicked = true;
+    }
+
 }
 
-// void
-// Controller::on_key(ge211::Key key)
-// {
-//     if (key == ge211::Key::code('q')) {
-//         view_.showMainMenu = true;
-//     }
-// }
+void
+Controller::on_frame(double dt)
+{
+    if (!model_.game_condition(view_.time,view_.lives) && view_.target_clicked) {
+        view_.time -= dt;
+        view_.shrink -= dt * 0.01;
+    }
+}

@@ -1,4 +1,5 @@
 #include "model.hxx"
+#include <stdlib.h>
 
 using namespace ge211;
 
@@ -43,11 +44,12 @@ static int const scene_multiplier = 12;
 Model::Model(int size)
         : Model(size,size)
 
-{ }
+{}
 
 Model::Model(int width, int height)
-    : game_scene({width,height})
-{ }
+        : game_scene({width,height}),
+          game_over(true)
+{}
 
 Model::Dimensions
 Model::Dims() const
@@ -65,52 +67,25 @@ Model::operator[](Position pos) const
 Model::Position
 Model::random_spot(int radius, Dimensions dims) const
 {
-    int width = dims.width;
-    int height = dims.height;
-
-    ge211::Random_source<int> x_rand(0, width - (2 * radius));
-    ge211::Random_source<int> y_rand(0, height - (2 * radius));
-
-    int x = x_rand.next();
-    int y = y_rand.next();
+    int x = rand() % (dims.width - radius);
+    int y = rand() % (dims.height - radius);
 
     return {x,y};
 }
 
-int
-Model::random_x(int radius, Dimensions dims) const
-{
-    int width = dims.width;
-
-    ge211::Random_source<int> x_rand(0, width - (2 * radius));
-
-    return x_rand.next();
-}
-
-int
-Model::random_y(int radius, Dimensions dims) const
-{
-    int height = dims.width;
-
-    ge211::Random_source<int> y_rand(0, height - (2 * radius));
-
-    return y_rand.next();
-}
-
-
-bool
-Model::game_over(int time, int lives) const
-{
-    bool result = false;
-
-    if (time == 0) {
-        result = true;
-    } else if (lives == 0) {
-        result = true;
-    }
-
-    return result;
-}
+//bool
+//Model::game_over(int time, int lives) const
+//{
+//    bool result = false;
+//
+//    if (time == 0) {
+//        result = true;
+//    } else if (lives == 0) {
+//        result = true;
+//    }
+//
+//    return result;
+//}
 
 bool Model::hit_target(Position target_pos, Position pos, int radius) const
 {
@@ -160,7 +135,17 @@ bool Model::hit_target(Position target_pos, Position pos, int radius) const
 
 }
 
+bool
+Model::game_condition(double time, int lives)
+{
+    if (time <= 0 || lives == 0) {
+        game_over = true;
+    } else {
+        game_over = false;
+    }
 
+    return game_over;
+}
 
 // void
 // Model::target_animation(int time, int gamemode) const
@@ -194,6 +179,9 @@ Target::Target(int radius, Position pos)
         : target_pos(pos),
           target_radius(radius)
 {}
+
+
+
 
 ///--------------------------------------------------------------------------///
 Button::Button(int size)

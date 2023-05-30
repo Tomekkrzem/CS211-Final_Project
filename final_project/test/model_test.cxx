@@ -18,17 +18,26 @@ TEST_CASE("Button Click Test")
     //
     // CHECK_FALSE(model_.hard_click(pos));
 
-    CHECK(model_.random_spot(6,model_.Dims()).x == 0);
-    CHECK(model_.random_spot(6,model_.Dims()).y == 0);
-
-    CHECK(model_.random_x(6,model_.Dims()) == 0);
-    CHECK(model_.random_y(6,model_.Dims()) == 0);
-
+    CHECK_FALSE(model_.random_spot(6,model_.Dims()).x == 0);
+    CHECK_FALSE(model_.random_spot(6,model_.Dims()).y == 0);
 }
 
+TEST_CASE("Game Over")
+{
+    Model model_(100,100);
 
-//
-// TODO: Write preliminary model tests.
-//
-// These tests should demonstrate your functional requirements.
-//
+    int time = 10;
+    int lives = 3;
+
+    CHECK_FALSE(model_.game_condition(time,lives));
+
+    lives = 0;
+
+    CHECK(model_.game_condition(time,lives));
+
+    lives = 3;
+    time = 0;
+
+    CHECK(model_.game_condition(time,lives));
+
+}

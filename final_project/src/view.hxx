@@ -32,6 +32,13 @@ public:
 
     Position target_pos;
 
+    bool target_clicked;
+
+    double time;
+
+    int lives;
+
+    long shrink;
 
 
 
@@ -67,7 +74,11 @@ private:
     ge211::Rectangle_sprite game_board_sprite;
 
     // Target Sprite
-    ge211::Image_sprite target_sprite;
+    ge211::Circle_sprite target_sprite;
 
-    bool initial_target_clicked;
+    ge211::Text_sprite game_timer;
+
+    ge211::Font font_info2{"GamePlayedOutline-wrX8.ttf",
+                          (initial_window_dimensions().height
+                           / model_.Dims().height) * 5};
 };
