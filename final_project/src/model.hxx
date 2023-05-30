@@ -11,8 +11,6 @@ public:
 
     using Position = ge211::Posn<int>;
 
-    using Rectangle = ge211::Rect<int>;
-
     bool good_position(Position) const;
 
     void bounds_check(Position) const;
@@ -78,8 +76,6 @@ public:
     explicit Target (int size = 0);
 
     Target(int radius, Position pos);
-
-//    Target next_target();
 
     bool hit_target(Position,Position, int radius) const;
 

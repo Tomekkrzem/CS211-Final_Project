@@ -73,35 +73,9 @@ Model::random_spot(int radius, Dimensions dims) const
     return {x,y};
 }
 
-//bool
-//Model::game_over(int time, int lives) const
-//{
-//    bool result = false;
-//
-//    if (time == 0) {
-//        result = true;
-//    } else if (lives == 0) {
-//        result = true;
-//    }
-//
-//    return result;
-//}
 
 bool Model::hit_target(Position target_pos, Position pos, int radius) const
 {
-    // int target_center_x = target_pos.x;
-    // int target_center_y = target_pos.y;
-    //
-    // int click_center_x = pos.x;
-    // int click_center_y = pos.y;
-    //
-    // int distance_squared = (target_center_x - click_center_x) * (target_center_x - click_center_x)
-    //                        + (target_center_y - click_center_y) * (target_center_y - click_center_y);
-    //
-    // int radius_squared = radius * radius;
-    //
-    // return distance_squared <= radius_squared;
-
     bool result;
 
     Rectangle target(target_pos.x, target_pos.y,

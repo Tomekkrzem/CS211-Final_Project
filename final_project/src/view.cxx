@@ -1,4 +1,7 @@
 #include "view.hxx"
+#include <iomanip>
+
+using namespace std;
 
 using Color = ge211::Color;
 using Sprite_set = ge211::Sprite_set;
@@ -106,7 +109,7 @@ View::draw(ge211::Sprite_set& set)
         // Set Title color
         name_builder1.color({211,127,111}) << "Score: " << score;
         name_builder2.color({240,213,208}) << "Game Over";
-        name_builder3.color({211,127,111}) << "Accuracy: " << accuracy;
+        name_builder3.color({211,127,111}) << "Accuracy: " << setprecision(3) << accuracy << "%";
 
         // Updates the title_text sprite
         score_sprite.reconfigure(name_builder1);
