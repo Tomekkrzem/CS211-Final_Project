@@ -191,6 +191,7 @@ Button::Button(int width, int height, Position pos)
         : e_button{pos.left_by(width * 1.5).up_by(height * 1.25)},
           m_button{pos.left_by(width * 1.5)},
           h_button{pos.left_by(width * 1.5).down_by(height * 1.25)},
+          back_button(pos.right_by(width * 2.75).down_by(height * 4.5)),
           button_dims(width * 3,height),
           dims(width,height)
 {};
@@ -246,4 +247,10 @@ bool
 Button::hard_click(Position pos) const
 {
     return (button_click(pos,h_button));
+}
+
+bool
+Button::back_click(Position pos) const
+{
+    return (button_click(pos,back_button));
 }

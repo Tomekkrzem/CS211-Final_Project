@@ -47,8 +47,13 @@ Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
 {
     click = pos;
 
+    if (!model_.game_condition(view_.time,view_.lives)){
+        view_.click_count += 1;
+    }
+
+
     if (!view_.target_clicked) {
-        view_.time = 30;
+        view_.time = 5;
         view_.lives = 3;
     }
 

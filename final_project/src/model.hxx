@@ -113,9 +113,12 @@ public:
 
     bool hard_click(Position) const;
 
+    bool back_click(Position) const;
+
     Position e_button;
     Position m_button;
     Position h_button;
+    Position back_button;
     Dimensions button_dims;
 
 private:

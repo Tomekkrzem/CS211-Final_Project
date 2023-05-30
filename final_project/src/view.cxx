@@ -13,6 +13,10 @@ View::View(Model const& model)
           time(0),
           lives(0),
           shrink(1),
+          score(0),
+          click_count(0),
+          hit_count(0),
+          accuracy(0),
           model_(model),
           button_(model_.Dims().width,model_.Dims().height,
                   {initial_window_dimensions().width / 2,
@@ -42,7 +46,19 @@ View::View(Model const& model)
 
           target_sprite(scene_multiplier * 2, {255,0,0}),
 
-          game_timer()
+          game_timer(),
+
+          game_over_screen(initial_window_dimensions(),{128,0,0}),
+
+          score_sprite(),
+
+          game_over_text(),
+
+          back_button(button_.button_dims, {240,213,208}),
+
+          back_hover(button_.button_dims, {216,147,134}),
+
+          accuracy_sprite()
 
 { }
 
@@ -77,6 +93,41 @@ View::draw(ge211::Sprite_set& set)
         set.add_sprite(hard_sprite,button_.h_button, 2);
     }
 
+    if (!showMainMenu && model_.game_condition(time,lives)) {
+        set.add_sprite(game_over_screen,{0,0},7);
+
+        accuracy = (hit_count / click_count) * 100;
+
+        // Title Builder
+        ge211::Text_sprite::Builder name_builder1(font_info2);
+        ge211::Text_sprite::Builder name_builder2(font_info3);
+        ge211::Text_sprite::Builder name_builder3(font_info2);
+
+        // Set Title color
+        name_builder1.color({211,127,111}) << "Score: " << score;
+        name_builder2.color({240,213,208}) << "Game Over";
+        name_builder3.color({211,127,111}) << "Accuracy: " << accuracy;
+
+        // Updates the title_text sprite
+        score_sprite.reconfigure(name_builder1);
+        game_over_text.reconfigure(name_builder2);
+        accuracy_sprite.reconfigure(name_builder3);
+
+        set.add_sprite(score_sprite,
+                       {center.left_by(model_.Dims().width * 1.5)
+                                .up_by(model_.Dims().height * 3)}, 8);
+
+        set.add_sprite(accuracy_sprite,
+                       {center.left_by(model_.Dims().width * 1.5)
+                                .up_by(model_.Dims().height * 1.5)}, 8);
+
+        set.add_sprite(game_over_text,
+                       {center.left_by(model_.Dims().width * 3)
+                                .up_by(model_.Dims().height * 5)}, 8);
+
+        set.add_sprite(back_button,button_.back_button, 8);
+    }
+
 //    if (!showMainMenu) {
 //        initial_target_clicked=false;
 //        if (!initial_target_clicked) {
@@ -106,7 +157,7 @@ View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
 {
     set.add_sprite(crosshair_sprite,
                    mouse_posn.left_by(scene_multiplier / 2)
-                             .up_by(scene_multiplier / 2), 9);
+                             .up_by(scene_multiplier / 2), 10);
 
     if (showMainMenu) {
         if (button_.easy_click(mouse_posn)) {
@@ -128,6 +179,13 @@ View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
         }
     }
 
+    if (!showMainMenu && model_.game_condition(time,lives)) {
+        if (button_.back_click(mouse_posn)) {
+            set.add_sprite(back_hover, button_.back_button, 9);
+        } else {
+            set.add_sprite(back_button,button_.back_button, 8);
+        }
+    }
 
 }
 
@@ -154,14 +212,23 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
         }
     }
 
+
+    if (!showMainMenu && model_.game_condition(time,lives)) {
+        if (button_.back_click(mouse_posn)) {
+            showMainMenu = true;
+            gamemode = 0;
+            target_clicked = false;
+            score = 0;
+            click_count = 0;
+            hit_count = 0;
+            accuracy = 0;
+        }
+    }
 }
 
 void
 View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
 {
-//     target_pos = model_.random_spot(target_sprite.dimensions().width * gamemode,
-//                                       initial_window_dimensions());
-
     ge211::Transform target = ge211::Transform{}
             .set_scale_x(0)
             .set_scale_y(0);
@@ -191,6 +258,9 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
             if (model_.hit_target(target_pos, mouse_posn, radius)) {
                 target_pos = model_.random_spot(radius, initial_window_dimensions());
                 target_clicked = true;
+                score += 100;
+                hit_count += 1;
+                //accuracy = (hit_count / click_count) * 100;
             }
         }
 

@@ -40,10 +40,19 @@ public:
 
     long shrink;
 
+    int score;
+
+    double click_count;
+
+    double hit_count;
+
+    double accuracy;
+
 
 
 private:
-    Model const& model_;
+    //Model const& model_;
+    Model model_;
     Button button_;
 
     bool showMainMenu;
@@ -81,4 +90,19 @@ private:
     ge211::Font font_info2{"GamePlayedOutline-wrX8.ttf",
                           (initial_window_dimensions().height
                            / model_.Dims().height) * 5};
+
+    ge211::Rectangle_sprite game_over_screen;
+    ge211::Text_sprite score_sprite;
+
+    ge211::Font font_info3{"GamePlayedOutline-wrX8.ttf",
+                           (initial_window_dimensions().height
+                            / model_.Dims().height) * 10};
+
+    ge211::sprites::Text_sprite game_over_text;
+
+    ge211::Rectangle_sprite back_button;
+
+    ge211::Rectangle_sprite back_hover;
+
+    ge211::Text_sprite accuracy_sprite;
 };
