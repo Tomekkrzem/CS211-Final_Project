@@ -122,7 +122,23 @@ private:
     ge211::Image_sprite heart2;
     ge211::Image_sprite heart3;
 
-    ge211::Text_sprite back_to_menu_sprite;
+    //Back to menu text
+    ge211::Text_sprite back_to_menu_text;
 
+    //Game modes text
+    ge211::Text_sprite easy_text;
+    ge211::Text_sprite med_text;
+    ge211::Text_sprite hard_text;
+
+    ge211::Font font_info5{"GamePlayed-vYL7.ttf",
+                           (initial_window_dimensions().height
+                            / model_.Dims().height) * 5};
+
+    //Show amount of lives
+    ge211::Text_sprite lives_text;
+
+    //Statistics for accuracy
+    ge211::Text_sprite hits_text;
+    ge211::Text_sprite miss_text;
 
 };

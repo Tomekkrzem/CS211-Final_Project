@@ -93,6 +93,7 @@ bool Model::hit_target(Position target_pos, Position pos, int radius) const
     int t_easy = target_pos.y;
     int b_easy = target_pos.y + target.height;
 
+    // Conditions to check if hits target
     bool cond1 = r_cursor < l_easy;
     bool cond2 = l_cursor > r_easy;
     bool cond3 = t_cursor > b_easy;
@@ -112,6 +113,7 @@ bool Model::hit_target(Position target_pos, Position pos, int radius) const
 bool
 Model::game_condition(double time, int lives)
 {
+    // If time or lives are 0 game over
     if (time <= 0 || lives == 0) {
         game_over = true;
     } else {

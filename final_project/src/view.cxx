@@ -32,8 +32,8 @@ View::View(Model const& model)
           showMainMenu(true),
 
           menu_sprite(initial_window_dimensions(),{0,25,51}),
-          title_text(),
 
+          title_text(),
 
           hard_sprite(button_.button_dims, {255,0,0}),
 
@@ -69,16 +69,30 @@ View::View(Model const& model)
 
           count_down_sprite(),
 
+          //Heart Sprites using imported image
           heart1("6-pixel-heart-4.png"),
 
           heart2("6-pixel-heart-4.png"),
 
           heart3("6-pixel-heart-4.png"),
 
-          back_to_menu_sprite()
+          back_to_menu_text(),
+
+          easy_text(),
+
+          med_text(),
+
+          hard_text(),
+
+          lives_text(),
+
+          hits_text(),
+
+          miss_text()
 
 { }
 
+// Renders sprite that require no direct user interaction
 void
 View::draw(ge211::Sprite_set& set)
 {
@@ -96,74 +110,136 @@ View::draw(ge211::Sprite_set& set)
     int y = initial_window_dimensions().height / 2;
     Position center = {x,y};
 
+    // Updates Easy Button Text
+    ge211::Text_sprite::Builder easy_build(font_info5);
+    easy_build.color({0,0,0}) << "EASY";
+    easy_text.reconfigure(easy_build);
+
+    // Updates Medium Button Text
+    ge211::Text_sprite::Builder med_build(font_info5);
+    med_build.color({0,0,0}) << "MEDIUM";
+    med_text.reconfigure(med_build);
+
+    // Updates Hard Button Text
+    ge211::Text_sprite::Builder hard_build(font_info5);
+    hard_build.color({0,0,0}) << "HARD";
+    hard_text.reconfigure(hard_build);
+
+    // Checks that Main Menu is Active
     if (showMainMenu) {
+
+        // Adds Main Menu Sprite
         set.add_sprite(menu_sprite, {0, 0});
 
+        // Adds Title Text near approximate center
         set.add_sprite(title_text,
                        {center.left_by(model_.Dims().width * 2.25)
                               .up_by(model_.Dims().height * 6)}, 2);
 
+        // Adds Easy Button and Easy Text
         set.add_sprite(easy_sprite, button_.e_button, 2);
+        set.add_sprite(easy_text,button_.e_button.right_by(100),5);
 
+        // Adds Medium Button and Medium Text
         set.add_sprite(medium_sprite,button_.m_button, 2);
+        set.add_sprite(med_text,button_.m_button.right_by(60),5);
 
+        // Adds Hard Button and Hard Text
         set.add_sprite(hard_sprite,button_.h_button, 2);
+        set.add_sprite(hard_text, button_.h_button.right_by(100),5);
     }
 
+    // Checks that Main Menu is off and Game is Over
     if (!showMainMenu && model_.game_condition(time,lives)) {
+
+        // Adds Game Over Background
         set.add_sprite(game_over_screen,{0,0},7);
 
+        // Checks if Hits are Greater that Clicks which occur from occasional double render
         if (hit_count > click_count) {
             click_count = hit_count;
         }
 
+        // Calculates final Accuracy
         accuracy = (hit_count / click_count) * 100;
 
+        // Sets final score
         double final_score = score - (click_count - hit_count) * 25;
 
-        if (lives == 0) {
-            final_score -= 300;
-        } else if (lives == 1) {
-            final_score -= 200;
-        } else if (lives == 2) {
-            final_score -= 100;
-        }
-
-        // Title Builder
+        // Name Builders for Game Over Text Sprites
         ge211::Text_sprite::Builder name_builder1(font_info2);
         ge211::Text_sprite::Builder name_builder2(font_info3);
         ge211::Text_sprite::Builder name_builder3(font_info2);
+        ge211::Text_sprite::Builder name_builder4(font_info2);
+        ge211::Text_sprite::Builder name_builder5(font_info2);
+        ge211::Text_sprite::Builder name_builder6(font_info2);
 
-        // Set Title color
+        // Configures all the Name Builders
         name_builder1.color({238,232,170}) << "Score: " <<  final_score;
         name_builder2.color({240,213,208}) << "Game Over";
         name_builder3.color({238,232,170}) << "Accuracy: " << setprecision(3) << accuracy << "%";
+        name_builder4.color({238,232,170}) << "Lives: "  << lives;
+        name_builder5.color({238,232,170}) << "Hits: " << hit_count;
+        name_builder6.color({238,232,170}) << "Misses: " << (click_count - hit_count);
 
-        // Updates the title_text sprite
+
+        // Updates all Game Over text sprite
         score_sprite.reconfigure(name_builder1);
         game_over_text.reconfigure(name_builder2);
         accuracy_sprite.reconfigure(name_builder3);
+        lives_text.reconfigure(name_builder4);
+        hits_text.reconfigure(name_builder5);
+        miss_text.reconfigure(name_builder6);
 
+        // Updates Back to Main Menu button text
+        ge211::Text_sprite::Builder menu_build(font_info5);
+        menu_build.color({0,0,0}) << "MAIN MENU";
+        back_to_menu_text.reconfigure(menu_build);
+
+        // Adds the Score Text
         set.add_sprite(score_sprite,
                        {center.left_by(model_.Dims().width * 2)
                                 .up_by(model_.Dims().height * 2.5)}, 8);
 
+        // Adds the Accuracy Text
         set.add_sprite(accuracy_sprite,
                        {center.left_by(model_.Dims().width * 2)
                                 .up_by(model_.Dims().height * 1.5)}, 8);
 
+        // Adds the Lives Text
+        set.add_sprite(lives_text,
+                       {center.left_by(model_.Dims().width * 2)
+                                .up_by(model_.Dims().height * 0.5)}, 8);
+
+        // Adds the Hits Text
+        set.add_sprite(hits_text,
+                       {center.left_by(model_.Dims().width * 2)
+                                .down_by(model_.Dims().height * 0.5)}, 8);
+
+        // Adds the Misses Text
+        set.add_sprite(miss_text,
+                       {center.left_by(model_.Dims().width * 2)
+                                .down_by(model_.Dims().height * 1.5)}, 8);
+
+        // Adds Game Over Title text
         set.add_sprite(game_over_text,
                        {center.left_by(model_.Dims().width * 4.25)
                                 .up_by(model_.Dims().height * 6)}, 8);
 
+        // Creates a Back to Main Menu button
         set.add_sprite(back_button,button_.back_button, 8);
+
+        // Adds Back to Main Menu text
+        set.add_sprite(back_to_menu_text,button_.back_button.right_by(15),9);
     }
 
-
+    // Checks that counter is started and not zero
     if (begin_count && count_down > 0) {
-        // Count Down Builder
+
+        // Count Down Text Builder
         ge211::Text_sprite::Builder name_builder4(font_info4);
 
+        // Converts double value "count" to int value "count_down"
         int count = count_down;
 
         // Set Count Down color
@@ -172,27 +248,34 @@ View::draw(ge211::Sprite_set& set)
         // Updates the count_down sprite
         count_down_sprite.reconfigure(name_builder4);
 
+        // Adds Count Down in approximate center
         set.add_sprite(count_down_sprite,
                        center.left_by(model_.Dims().width).up_by(model_.Dims().height * 4) , 6);
     }
 
+    // Checks that Main Menu is off and Count Down ended
     if (!showMainMenu && count_down <= 0) {
 
+        // Sets standard transformation for Target
         ge211::Transform target = ge211::Transform{}
                 .set_scale_x(gamemode)
                 .set_scale_y(gamemode);
 
-        if (gamemode == 3) {
+        // Checks which game mode is selected and that the game is not over
+        if (gamemode == 3 && !model_.game_condition(time,lives)) {
 
+            // Updates the differential to cause the target to shrink
             differential = gamemode - shrink * 0.5;
 
+            // Cause the transformation to shrink target on every frame
             target = ge211::Transform{}
                     .set_scale_x(differential)
                     .set_scale_y(differential);
 
+            // Updates corresponding hit box of target
             radius = target_sprite.dimensions().width * (differential) * 2;
 
-        } else if (gamemode == 2) {
+        } else if (gamemode == 2 && !model_.game_condition(time,lives)) {
 
             differential = gamemode - shrink * 0.75;
 
@@ -201,7 +284,9 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_y(differential);
 
             radius = target_sprite.dimensions().width * (differential) * 2;
-        } else if (gamemode == 1) {
+
+        } else if (gamemode == 1 && !model_.game_condition(time,lives)) {
+
             differential = gamemode - shrink;
 
             target = ge211::Transform{}
@@ -211,15 +296,18 @@ View::draw(ge211::Sprite_set& set)
             radius = target_sprite.dimensions().width * (differential) * 2;
         }
 
-        if (differential <= 0) {
+        // Checks that target disappears and game is not over to subtract a life
+        if (differential <= 0 && !model_.game_condition(time,lives)) {
             lives -= 1;
         }
 
-
+        // Sets the standard transformation for the heart sprites
         ge211::Transform heart = ge211::Transform{}
         .set_scale_y(0.03)
         .set_scale_x(0.03);
 
+        // Updates how many hearts show up depending on how many lives remain
+        // If there is no lives, end the game
         if (lives == 0) {
             time = 0;
         } else if (lives == 1) {
@@ -233,23 +321,23 @@ View::draw(ge211::Sprite_set& set)
             set.add_sprite(heart3,{100,0},5,heart);
         }
 
-
-
+        // Render the target sprite which shrinks at target_pos
         set.add_sprite(target_sprite, target_pos, 6, target);
     }
-
-
 }
 
+// Creates the initial window dimensions of the game
 View::Dimensions
 View::initial_window_dimensions() const
 {
     return scene_multiplier * model_.Dims();
 }
 
+// Renders sprite that require mouse motion
 void
 View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
 {
+    // Render the cross-hair sprite wherever mouse moves
     set.add_sprite(crosshair_sprite,
                    mouse_posn.left_by(scene_multiplier / 2)
                              .up_by(scene_multiplier / 2), 10);
@@ -330,23 +418,6 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
 void
 View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
 {
-//    ge211::Transform target = ge211::Transform{}
-//            .set_scale_x(0)
-//            .set_scale_y(0);
-//
-//    if (gamemode == 3) {
-//        target = ge211::Transform{}
-//                .set_scale_x(3)
-//                .set_scale_y(3);
-//    } else if (gamemode == 2) {
-//        target = ge211::Transform{}
-//                .set_scale_x(2)
-//                .set_scale_y(2);
-//    } else if (gamemode == 1) {
-//        target = ge211::Transform{}
-//                .set_scale_x(1)
-//                .set_scale_y(1);
-//    }
 
     // Title Builder
     ge211::Text_sprite::Builder name_builder(font_info2);
@@ -358,9 +429,15 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
             if (model_.hit_target(target_pos, mouse_posn, radius) || (differential <= 0)) {
                 target_pos = model_.random_spot(radius, initial_window_dimensions());
                 target_clicked = true;
-                score += 100;
                 hit_count += 1;
                 shrink = 0;
+
+                if (differential <= 0) {
+                    ;
+                } else {
+                    score += 100;
+                }
+
             }
         }
 
