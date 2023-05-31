@@ -9,9 +9,7 @@ Controller::Controller(int width, int height)
         : model_(width, height),
           view_(model_),
           cursor(0,0),
-          click(0,0),
-          rand_pos(0,0)
-
+          click(0,0)
 {}
 
 void
@@ -51,9 +49,8 @@ Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
         view_.click_count += 1;
     }
 
-
     if (!view_.target_clicked) {
-        view_.time = 30;
+        view_.time = 10;
         view_.lives = 3;
     }
 
@@ -67,11 +64,14 @@ void
 Controller::on_frame(double dt)
 {
     if (view_.begin_count) {
-        view_.count_down -= dt * 0.75;
+        view_.count_down -= dt * 0.85;
     }
 
     if (!model_.game_condition(view_.time,view_.lives) && view_.target_clicked) {
         view_.time -= dt;
-        view_.shrink -= dt * 0.01;
+    }
+
+    if (view_.target_clicked && !model_.hit_target(view_.target_pos, click, view_.radius)) {
+        view_.shrink += dt;
     }
 }

@@ -38,7 +38,7 @@ public:
 
     int lives;
 
-    long shrink;
+    double shrink;
 
     int score;
 
@@ -51,6 +51,8 @@ public:
     double count_down;
 
     bool begin_count;
+
+    double differential;
 
 
 
@@ -91,16 +93,16 @@ private:
 
     ge211::Text_sprite game_timer;
 
-    ge211::Font font_info2{"GamePlayedOutline-wrX8.ttf",
+    ge211::Font font_info2{"GamePlayed-vYL7.ttf",
                           (initial_window_dimensions().height
                            / model_.Dims().height) * 5};
 
     ge211::Rectangle_sprite game_over_screen;
     ge211::Text_sprite score_sprite;
 
-    ge211::Font font_info3{"GamePlayedOutline-wrX8.ttf",
+    ge211::Font font_info3{"GamePlayed-vYL7.ttf",
                            (initial_window_dimensions().height
-                            / model_.Dims().height) * 10};
+                            / model_.Dims().height) * 14};
 
     ge211::sprites::Text_sprite game_over_text;
 
@@ -115,4 +117,12 @@ private:
     ge211::Font font_info4{"GamePlayedOutline-wrX8.ttf",
                            (initial_window_dimensions().height
                             / model_.Dims().height) * 30};
+
+    ge211::Image_sprite heart1;
+    ge211::Image_sprite heart2;
+    ge211::Image_sprite heart3;
+
+    ge211::Text_sprite back_to_menu_sprite;
+
+
 };

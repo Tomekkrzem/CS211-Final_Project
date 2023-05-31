@@ -11,17 +11,18 @@ static int const scene_multiplier = 12;
 
 View::View(Model const& model)
         : radius(0),
-          target_pos{0,0},
+          target_pos{620,320},
           target_clicked(false),
           time(0),
           lives(0),
-          shrink(1),
+          shrink(0),
           score(0),
           click_count(0),
           hit_count(0),
           accuracy(0),
           count_down(4),
           begin_count(false),
+          differential(0),
 
           model_(model),
           button_(model_.Dims().width,model_.Dims().height,
@@ -66,7 +67,15 @@ View::View(Model const& model)
 
           accuracy_sprite(),
 
-          count_down_sprite()
+          count_down_sprite(),
+
+          heart1("6-pixel-heart-4.png"),
+
+          heart2("6-pixel-heart-4.png"),
+
+          heart3("6-pixel-heart-4.png"),
+
+          back_to_menu_sprite()
 
 { }
 
@@ -104,7 +113,21 @@ View::draw(ge211::Sprite_set& set)
     if (!showMainMenu && model_.game_condition(time,lives)) {
         set.add_sprite(game_over_screen,{0,0},7);
 
+        if (hit_count > click_count) {
+            click_count = hit_count;
+        }
+
         accuracy = (hit_count / click_count) * 100;
+
+        double final_score = score - (click_count - hit_count) * 25;
+
+        if (lives == 0) {
+            final_score -= 300;
+        } else if (lives == 1) {
+            final_score -= 200;
+        } else if (lives == 2) {
+            final_score -= 100;
+        }
 
         // Title Builder
         ge211::Text_sprite::Builder name_builder1(font_info2);
@@ -112,9 +135,9 @@ View::draw(ge211::Sprite_set& set)
         ge211::Text_sprite::Builder name_builder3(font_info2);
 
         // Set Title color
-        name_builder1.color({211,127,111}) << "Score: " << score;
+        name_builder1.color({238,232,170}) << "Score: " <<  final_score;
         name_builder2.color({240,213,208}) << "Game Over";
-        name_builder3.color({211,127,111}) << "Accuracy: " << setprecision(3) << accuracy << "%";
+        name_builder3.color({238,232,170}) << "Accuracy: " << setprecision(3) << accuracy << "%";
 
         // Updates the title_text sprite
         score_sprite.reconfigure(name_builder1);
@@ -122,50 +145,97 @@ View::draw(ge211::Sprite_set& set)
         accuracy_sprite.reconfigure(name_builder3);
 
         set.add_sprite(score_sprite,
-                       {center.left_by(model_.Dims().width * 1.5)
-                                .up_by(model_.Dims().height * 3)}, 8);
+                       {center.left_by(model_.Dims().width * 2)
+                                .up_by(model_.Dims().height * 2.5)}, 8);
 
         set.add_sprite(accuracy_sprite,
-                       {center.left_by(model_.Dims().width * 1.5)
+                       {center.left_by(model_.Dims().width * 2)
                                 .up_by(model_.Dims().height * 1.5)}, 8);
 
         set.add_sprite(game_over_text,
-                       {center.left_by(model_.Dims().width * 3)
-                                .up_by(model_.Dims().height * 5)}, 8);
+                       {center.left_by(model_.Dims().width * 4.25)
+                                .up_by(model_.Dims().height * 6)}, 8);
 
         set.add_sprite(back_button,button_.back_button, 8);
     }
 
-//    if (!showMainMenu) {
-//        initial_target_clicked=false;
-//        if (!initial_target_clicked) {
-//            set.add_sprite(target_sprite,
-//                           center.left_by(model_.Dims().width)
-//                                 .up_by(model_.Dims().height),5,target);
-//
-//            radius = target_sprite.dimensions().width * gamemode * 2;
-//
-//            target_pos = center.left_by(model_.Dims().width)
-//                               .up_by(model_.Dims().height);
-//
-//            initial_target_clicked = true;
-//        }
-//    }
 
     if (begin_count && count_down > 0) {
         // Count Down Builder
-        ge211::Text_sprite::Builder name_builder(font_info4);
+        ge211::Text_sprite::Builder name_builder4(font_info4);
 
         int count = count_down;
 
         // Set Count Down color
-        name_builder.color({255,255,255}) << count;
+        name_builder4.color({255,255,255}) << count;
 
         // Updates the count_down sprite
-        count_down_sprite.reconfigure(name_builder);
+        count_down_sprite.reconfigure(name_builder4);
 
         set.add_sprite(count_down_sprite,
                        center.left_by(model_.Dims().width).up_by(model_.Dims().height * 4) , 6);
+    }
+
+    if (!showMainMenu && count_down <= 0) {
+
+        ge211::Transform target = ge211::Transform{}
+                .set_scale_x(gamemode)
+                .set_scale_y(gamemode);
+
+        if (gamemode == 3) {
+
+            differential = gamemode - shrink * 0.5;
+
+            target = ge211::Transform{}
+                    .set_scale_x(differential)
+                    .set_scale_y(differential);
+
+            radius = target_sprite.dimensions().width * (differential) * 2;
+
+        } else if (gamemode == 2) {
+
+            differential = gamemode - shrink * 0.75;
+
+            target = ge211::Transform{}
+                    .set_scale_x(differential)
+                    .set_scale_y(differential);
+
+            radius = target_sprite.dimensions().width * (differential) * 2;
+        } else if (gamemode == 1) {
+            differential = gamemode - shrink;
+
+            target = ge211::Transform{}
+                    .set_scale_x(differential)
+                    .set_scale_y(differential);
+
+            radius = target_sprite.dimensions().width * (differential) * 2;
+        }
+
+        if (differential <= 0) {
+            lives -= 1;
+        }
+
+
+        ge211::Transform heart = ge211::Transform{}
+        .set_scale_y(0.03)
+        .set_scale_x(0.03);
+
+        if (lives == 0) {
+            time = 0;
+        } else if (lives == 1) {
+            set.add_sprite(heart1,{0,0},5,heart);
+        } else if (lives == 2) {
+            set.add_sprite(heart1,{0,0},5,heart);
+            set.add_sprite(heart2,{50,0},5,heart);
+        } else if (lives == 3) {
+            set.add_sprite(heart1,{0,0},5,heart);
+            set.add_sprite(heart2,{50,0},5,heart);
+            set.add_sprite(heart3,{100,0},5,heart);
+        }
+
+
+
+        set.add_sprite(target_sprite, target_pos, 6, target);
     }
 
 
@@ -252,6 +322,7 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
             accuracy = 0;
             count_down = 4;
             begin_count = false;
+            shrink = 0;
         }
     }
 }
@@ -259,45 +330,41 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
 void
 View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
 {
-    ge211::Transform target = ge211::Transform{}
-            .set_scale_x(0)
-            .set_scale_y(0);
-
-    if (gamemode == 3) {
-        target = ge211::Transform{}
-                .set_scale_x(3)
-                .set_scale_y(3);
-    } else if (gamemode == 2) {
-        target = ge211::Transform{}
-                .set_scale_x(2)
-                .set_scale_y(2);
-    } else if (gamemode == 1) {
-        target = ge211::Transform{}
-                .set_scale_x(1)
-                .set_scale_y(1);
-    }
+//    ge211::Transform target = ge211::Transform{}
+//            .set_scale_x(0)
+//            .set_scale_y(0);
+//
+//    if (gamemode == 3) {
+//        target = ge211::Transform{}
+//                .set_scale_x(3)
+//                .set_scale_y(3);
+//    } else if (gamemode == 2) {
+//        target = ge211::Transform{}
+//                .set_scale_x(2)
+//                .set_scale_y(2);
+//    } else if (gamemode == 1) {
+//        target = ge211::Transform{}
+//                .set_scale_x(1)
+//                .set_scale_y(1);
+//    }
 
     // Title Builder
     ge211::Text_sprite::Builder name_builder(font_info2);
 
-    radius = target_sprite.dimensions().width * gamemode * 2;
+    //radius = target_sprite.dimensions().width * gamemode * 2;
 
     if (!showMainMenu && count_down <= 0) {
-
         if (target_clicked) {
-            if (model_.hit_target(target_pos, mouse_posn, radius)) {
+            if (model_.hit_target(target_pos, mouse_posn, radius) || (differential <= 0)) {
                 target_pos = model_.random_spot(radius, initial_window_dimensions());
                 target_clicked = true;
                 score += 100;
                 hit_count += 1;
+                shrink = 0;
             }
         }
 
-//        target = ge211::Transform{}
-//                .set_scale_x(shrink)
-//                .set_scale_y(shrink);
-
-        set.add_sprite(target_sprite, target_pos, 5, target);
+        //set.add_sprite(target_sprite, target_pos, 5, target);
 
         int count = time;
 
