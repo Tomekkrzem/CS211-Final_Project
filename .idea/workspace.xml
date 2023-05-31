@@ -25,10 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89638f63-b9b2-4357-82a6-682d391300a1" name="Changes" comment="Code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_project/src/controller.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/controller.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/src/model.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.cxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_project/src/model.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.hxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_project/src/view.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/src/view.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.hxx" afterDir="false" />
     </list>
     <list id="c51e31a4-373a-433a-a6de-1752d5174721" name="Changes by user" comment="Changes by user" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +152,7 @@
       <workItem from="1685486917713" duration="420000" />
       <workItem from="1685496085213" duration="80000" />
       <workItem from="1685496478533" duration="242000" />
-      <workItem from="1685500894117" duration="8461000" />
+      <workItem from="1685500894117" duration="9167000" />
     </task>
     <task id="LOCAL-00001" summary="Code">
       <created>1685085166266</created>
@@ -230,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685507793234</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Code">
+      <created>1685509585960</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685509585960</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,8 +251,8 @@
     <isAutomaticFoundErrors value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Code" />
     <MESSAGE value="Changes by user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by user" />
+    <MESSAGE value="Code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code" />
   </component>
 </project>

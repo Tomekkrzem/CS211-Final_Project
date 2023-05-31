@@ -43,7 +43,7 @@ Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
 {
     click = pos;
 
-    if (!model_.game_condition(view_.time,view_.lives) && view_.target_clicked){//count clicks
+    if (!model_.game_condition(view_.time,view_.lives) && !view_.showMainMenu){//count clicks
         view_.click_count += 1;
     }
 
@@ -54,6 +54,8 @@ Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
 
     if (model_.hit_target(view_.target_pos, click, view_.radius)) {//if target clicked
         view_.target_clicked = true;
+
+        // Updates amount of hits
         view_.hit_count += 1;
     }
 

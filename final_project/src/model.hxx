@@ -63,12 +63,15 @@ public:
 
     using Rectangle = ge211::Rect<int>;
 
-    explicit Target (int size = 0);
+    explicit Target (int size = 0, bool cond = false);
 
-    Target(int radius, Position pos);
+    Target(int radius, Position pos, bool cond);
 
     Position target_pos;
     int target_radius;
+    bool target_clicked;
+
+    bool hit_target(Position) const;
 
 private:
 };

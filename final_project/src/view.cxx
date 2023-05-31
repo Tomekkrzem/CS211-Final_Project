@@ -23,13 +23,15 @@ View::View(Model const& model)
           count_down(4),
           begin_count(false),
           differential(0),
+          showMainMenu(true),
 
           model_(model),
+
           button_(model_.Dims().width,model_.Dims().height,
                   {initial_window_dimensions().width / 2,
                    initial_window_dimensions().height / 2}),
 
-          showMainMenu(true),
+          target_(0,{620,320},false),
 
           menu_sprite(initial_window_dimensions(),{0,25,51}),
 
@@ -472,9 +474,6 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
                     ;
                 } else {
                     score += 100;
-
-                    // Updates amount of hits
-                    //hit_count += 1;
                 }
 
             }

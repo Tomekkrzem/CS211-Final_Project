@@ -54,14 +54,16 @@ public:
 
     double differential;//difference between game and shrink
 
+    bool showMainMenu;
+
 
 
 private:
     //Model const& model_;
     Model model_;
     Button button_;
+    Target target_;
 
-    bool showMainMenu;
     int gamemode = 0;
 
     //Main menu background
