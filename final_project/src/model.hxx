@@ -25,10 +25,7 @@ public:
 
     Dimensions dimensions() const;
 };
-
-
-
-
+///--------------------------------------------------------------------------///
 class Model
 {
 public:
@@ -52,16 +49,11 @@ public:
 
     bool game_condition (double time, int lives);
 
-
-
 private:
     Scene game_scene;
     bool game_over;
 };
-
-
-
-
+///--------------------------------------------------------------------------///
 class Target
 {
 public:
@@ -80,10 +72,7 @@ public:
 
 private:
 };
-
-
-
-
+///--------------------------------------------------------------------------///
 class Button
 {
 public:

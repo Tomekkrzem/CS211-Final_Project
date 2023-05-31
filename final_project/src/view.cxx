@@ -10,12 +10,12 @@ using Sprite_set = ge211::Sprite_set;
 static int const scene_multiplier = 12;
 
 View::View(Model const& model)
-        : radius(0),
-          target_pos{620,320},
-          target_clicked(false),
+        : radius(0), /// Make this a target class
+          target_pos{620,320}, /// Make this a target class
+          target_clicked(false), /// Make this a target class
           time(0),
           lives(0),
-          shrink(0),
+          shrink(0), /// Maybe make this a target class
           score(0),
           click_count(0),
           hit_count(0),
@@ -342,19 +342,24 @@ View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
                    mouse_posn.left_by(scene_multiplier / 2)
                              .up_by(scene_multiplier / 2), 10);
 
+    // Checks that Main Menu is on
     if (showMainMenu) {
+
+        // If mouse moves over Easy Button, create hovering effect
         if (button_.easy_click(mouse_posn)) {
             set.add_sprite(e_hover_sprite,button_.e_button, 3);
         } else {
             set.add_sprite(easy_sprite,button_.e_button, 2);
         }
 
+        // If mouse moves over Medium Button, create hovering effect
         if (button_.med_click(mouse_posn)) {
             set.add_sprite(m_hover_sprite,button_.m_button, 3);
         } else {
             set.add_sprite(medium_sprite,button_.m_button, 2);
         }
 
+        // If mouse moves over Hard Button, create hovering effect
         if (button_.hard_click(mouse_posn)) {
             set.add_sprite(h_hover_sprite,button_.h_button, 3);
         } else {
@@ -362,6 +367,8 @@ View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
         }
     }
 
+
+    // If Game is Over and Main Menu is off, create hovering effect for Back to Main Menu Button
     if (!showMainMenu && model_.game_condition(time,lives)) {
         if (button_.back_click(mouse_posn)) {
             set.add_sprite(back_hover, button_.back_button, 9);
@@ -372,34 +379,53 @@ View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
 
 }
 
+// Performs button operations when mouse position from click is received
 void
 View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
 {
+
     if (showMainMenu) {
+
+        // Checks that Easy Button is clicked
         if (button_.easy_click(mouse_posn)) {
+
+            // Renders Game Background
             set.add_sprite(game_board_sprite, {0, 0}, 4);
+
+            // Turn off Main Menu
             showMainMenu = false;
+
+            // Set Game Mode to Easy (3)
             gamemode = 3;
+
+            // Begin Counter
             begin_count = true;
         }
 
         if (button_.med_click(mouse_posn)) {
             set.add_sprite(game_board_sprite, {0, 0}, 4);
             showMainMenu = false;
+
+            // Set Game Mode to Medium (2)
             gamemode = 2;
+
             begin_count = true;
         }
 
         if (button_.hard_click(mouse_posn)) {
             set.add_sprite(game_board_sprite, {0, 0}, 4);
             showMainMenu = false;
+
+            // Set Game Mode to Hard (1)
             gamemode = 1;
+
             begin_count = true;
         }
     }
 
-
+    // Checks that the game is over
     if (!showMainMenu && model_.game_condition(time,lives)) {
+        // If Back to Main Menu is clicked, reset all conditions
         if (button_.back_click(mouse_posn)) {
             showMainMenu = true;
             gamemode = 0;
@@ -415,43 +441,56 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
     }
 }
 
+// Performs operations on the targets when click position is received
 void
 View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
 {
 
-    // Title Builder
-    ge211::Text_sprite::Builder name_builder(font_info2);
+    // Creates Text Builder for Timer
+    ge211::Text_sprite::Builder timer(font_info2);
 
-    //radius = target_sprite.dimensions().width * gamemode * 2;
-
+    // Checks that Main Menu is off and Count Down Finished
     if (!showMainMenu && count_down <= 0) {
+
+        // Checks that the first target is clicked to start game
         if (target_clicked) {
+
+            // Checks that the target is hit, or that the target completely disappears
             if (model_.hit_target(target_pos, mouse_posn, radius) || (differential <= 0)) {
+
+                // Sets Target Pos to a random position on the game board
                 target_pos = model_.random_spot(radius, initial_window_dimensions());
+
+                // Set Target Click to true
                 target_clicked = true;
-                hit_count += 1;
+
+                // Resets the shrink timer
                 shrink = 0;
 
+                // No score is added if the target disappears
                 if (differential <= 0) {
                     ;
                 } else {
                     score += 100;
+
+                    // Updates amount of hits
+                    //hit_count += 1;
                 }
 
             }
         }
 
-        //set.add_sprite(target_sprite, target_pos, 5, target);
 
         int count = time;
 
-        // Set Title color
-        name_builder.color({0,255,250}) << count;
+        // Updates the value of the timer
+        timer.color({0,255,250}) << count;
 
-        // Updates the title_text sprite
-        title_text.reconfigure(name_builder);
+        // Updates the timer sprite
+        game_timer.reconfigure(timer);
 
-        set.add_sprite(title_text,{initial_window_dimensions().width - 100, 0}, 5);
+        // Displays the timer which counts down in the corner of the screen
+        set.add_sprite(game_timer,{initial_window_dimensions().width - 100, 0}, 5);
 
     }
 

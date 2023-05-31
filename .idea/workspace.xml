@@ -26,16 +26,11 @@
   <component name="ChangeListManager">
     <list default="true" id="89638f63-b9b2-4357-82a6-682d391300a1" name="Changes" comment="Code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/model.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.cxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/view.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.cxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/view.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.hxx" afterDir="false" />
-    </list>
-    <list id="c51e31a4-373a-433a-a6de-1752d5174721" name="Changes by user" comment="">
       <change beforePath="$PROJECT_DIR$/final_project/src/controller.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/controller.cxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/model.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.cxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_project/src/model.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.hxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/view.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/src/view.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.cxx" afterDir="false" />
     </list>
+    <list id="c51e31a4-373a-433a-a6de-1752d5174721" name="Changes by user" comment="Changes by user" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,65 +55,6 @@
         <option name="url" value="https://github.com/Tomekkrzem/CS211-FInal-2.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/final_project/src/view.hxx">
-      <ranges>
-        <range start1="20" end1="21" start2="20" end2="21" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="24" end1="25" start2="24" end2="25" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="26" end1="27" start2="26" end2="27" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="30" end1="31" start2="30" end2="31" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="32" end1="33" start2="32" end2="33" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="34" end1="35" start2="34" end2="35" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="36" end1="37" start2="36" end2="37" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="38" end1="39" start2="38" end2="39" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="40" end1="41" start2="40" end2="41" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="42" end1="43" start2="42" end2="43" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="44" end1="45" start2="44" end2="45" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="46" end1="47" start2="46" end2="47" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="48" end1="49" start2="48" end2="49" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="50" end1="51" start2="50" end2="51" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="52" end1="53" start2="52" end2="53" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="54" end1="55" start2="54" end2="55" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="65" end1="66" start2="65" end2="65" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="67" end1="67" start2="66" end2="67" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="69" end1="69" start2="69" end2="70" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="93" end1="93" start2="94" end2="95" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="99" end1="99" start2="101" end2="102" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="100" end1="100" start2="103" end2="105" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="106" end1="106" start2="111" end2="112" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="108" end1="108" start2="114" end2="115" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="109" end1="110" start2="116" end2="116" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="112" end1="112" start2="118" end2="119" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="114" end1="114" start2="121" end2="122" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="119" end1="120" start2="127" end2="128" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="124" end1="125" start2="132" end2="139" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
-        <range start1="126" end1="126" start2="140" end2="150" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/final_project/src/model.cxx">
-      <ranges>
-        <range start1="24" end1="24" start2="24" end2="25" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="33" end1="34" start2="34" end2="35" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="43" end1="43" start2="44" end2="45" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="48" end1="48" start2="50" end2="51" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="66" end1="66" start2="69" end2="70" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="75" end1="76" start2="79" end2="80" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="95" end1="95" start2="99" end2="100" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
-        <range start1="111" end1="111" start2="116" end2="117" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="114" end1="114" start2="120" end2="121" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
-        <range start1="123" end1="145" start2="130" end2="130" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="156" end1="159" start2="141" end2="141" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="160" end1="160" start2="142" end2="143" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="163" end1="163" start2="146" end2="147" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="172" end1="172" start2="156" end2="157" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="193" end1="193" start2="178" end2="179" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="207" end1="207" start2="193" end2="194" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="213" end1="213" start2="200" end2="201" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="219" end1="219" start2="207" end2="208" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-        <range start1="225" end1="225" start2="214" end2="215" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -215,7 +151,7 @@
       <workItem from="1685486917713" duration="420000" />
       <workItem from="1685496085213" duration="80000" />
       <workItem from="1685496478533" duration="242000" />
-      <workItem from="1685500894117" duration="6485000" />
+      <workItem from="1685500894117" duration="8461000" />
     </task>
     <task id="LOCAL-00001" summary="Code">
       <created>1685085166266</created>
@@ -280,7 +216,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685503014941</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Code">
+      <created>1685507786886</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685507786886</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Changes by user">
+      <created>1685507793234</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685507793234</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,6 +244,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code" />
+    <MESSAGE value="Changes by user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by user" />
   </component>
 </project>
