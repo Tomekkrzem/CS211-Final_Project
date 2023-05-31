@@ -50,8 +50,6 @@ public:
 
     bool hit_target(Position,Position, int radius) const;
 
-    void target_animation(double time, int gamemode) const;
-
     bool game_condition (double time, int lives);
 
 
@@ -76,8 +74,6 @@ public:
     explicit Target (int size = 0);
 
     Target(int radius, Position pos);
-
-    bool hit_target(Position,Position, int radius) const;
 
     Position target_pos;
     int target_radius;
@@ -111,11 +107,11 @@ public:
 
     bool back_click(Position) const;
 
-    Position e_button;
-    Position m_button;
-    Position h_button;
-    Position back_button;
-    Dimensions button_dims;
+    Position e_button;//position of easy button
+    Position m_button;//position of medium button
+    Position h_button;//position of hard button
+    Position back_button;//position of back button
+    Dimensions button_dims;//standard button dimensions
 
 private:
     Dimensions dims;

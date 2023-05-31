@@ -18,41 +18,41 @@ public:
 
     explicit View(Model const& model);
 
-    void draw(ge211::Sprite_set& set);
+    void draw(ge211::Sprite_set& set);// Draws game
 
     Dimensions initial_window_dimensions() const;
 
-    void draw_input(ge211::Sprite_set&, Position mouse_posn);
+    void draw_input(ge211::Sprite_set&, Position mouse_posn);//Movement position of the cursor
 
-    void button_input(ge211::Sprite_set&, Position mouse_posn);
+    void button_input(ge211::Sprite_set&, Position mouse_posn);//Button inputs for the project
 
     void target_click(ge211::Sprite_set&, Position mouse_posn);
 
-    int radius;
+    int radius; //Radius of Target
 
-    Position target_pos;
+    Position target_pos; //Position of target
 
-    bool target_clicked;
+    bool target_clicked;//Tells us if target is clicked
 
-    double time;
+    double time; //timer
 
-    int lives;
+    int lives;//number of lives in the game
 
-    double shrink;
+    double shrink;//causes the target to get smaller over time
 
-    int score;
+    int score;//score for game
 
-    double click_count;
+    double click_count;//number of clicks during game
 
-    double hit_count;
+    double hit_count;//number times the player hits the target
 
-    double accuracy;
+    double accuracy;//Text
 
-    double count_down;
+    double count_down;// timer before game
 
-    bool begin_count;
+    bool begin_count;//to start game timer, when player clicks first target
 
-    double differential;
+    double differential;//difference between game and shrink
 
 
 
@@ -63,10 +63,11 @@ private:
 
     bool showMainMenu;
     int gamemode = 0;
-    //Position target_pos;
 
+    //Main menu background
     ge211::Rectangle_sprite menu_sprite;
 
+    //Title text
     ge211::Text_sprite title_text;
     ge211::Font font_info{"GamePlayedOutline-wrX8.ttf",
                           (initial_window_dimensions().height
@@ -91,33 +92,40 @@ private:
     // Target Sprite
     ge211::Circle_sprite target_sprite;
 
+    //Game timer
     ge211::Text_sprite game_timer;
 
     ge211::Font font_info2{"GamePlayed-vYL7.ttf",
                           (initial_window_dimensions().height
                            / model_.Dims().height) * 5};
 
+    //Game over Background
     ge211::Rectangle_sprite game_over_screen;
+
+    //Score
     ge211::Text_sprite score_sprite;
 
     ge211::Font font_info3{"GamePlayed-vYL7.ttf",
                            (initial_window_dimensions().height
                             / model_.Dims().height) * 14};
 
+    //Game over Text
     ge211::sprites::Text_sprite game_over_text;
 
+    //Back to Main Menu button, darkens when hovered
     ge211::Rectangle_sprite back_button;
-
     ge211::Rectangle_sprite back_hover;
 
+    //shows accuracy
     ge211::Text_sprite accuracy_sprite;
 
+    //countdown
     ge211::Text_sprite count_down_sprite;
 
     ge211::Font font_info4{"GamePlayedOutline-wrX8.ttf",
                            (initial_window_dimensions().height
                             / model_.Dims().height) * 30};
-
+    //Hearts for lives
     ge211::Image_sprite heart1;
     ge211::Image_sprite heart2;
     ge211::Image_sprite heart3;

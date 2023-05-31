@@ -22,6 +22,7 @@ Scene::dimensions() const
     return scene_dims;
 }
 
+//In bounds of the screen
 bool
 Scene::good_position(Position pos) const
 {
@@ -31,7 +32,7 @@ Scene::good_position(Position pos) const
 
 void
 Scene::bounds_check(Position pos) const
-{
+{//if not in good position, cause error
     if (!good_position(pos)) {
         throw Client_logic_error("Scene: position out of bounds");
     }
@@ -41,11 +42,13 @@ Scene::bounds_check(Position pos) const
 
 static int const scene_multiplier = 12;
 
+//Zero Constructor
 Model::Model(int size)
         : Model(size,size)
 
 {}
 
+//Main Constructor
 Model::Model(int width, int height)
         : game_scene({width,height}),
           game_over(true)
@@ -64,16 +67,17 @@ Model::operator[](Position pos) const
     return pos;
 }
 
+//Find random position on screen
 Model::Position
 Model::random_spot(int radius, Dimensions dims) const
-{
-    int x = rand() % (dims.width - radius);
+{//https://stackoverflow.com/questions/26086128/generate-different-random-coordinates for random position
+    int x = rand() % (dims.width - radius);//also makes sure the target position is not set out of bounds
     int y = rand() % (dims.height - radius);
 
     return {x,y};
 }
 
-
+//Tells us whether the player clicks on the target
 bool Model::hit_target(Position target_pos, Position pos, int radius) const
 {
     bool result;
@@ -110,6 +114,7 @@ bool Model::hit_target(Position target_pos, Position pos, int radius) const
 
 }
 
+//Tells whether game ends or not based on lives and time
 bool
 Model::game_condition(double time, int lives)
 {
@@ -123,28 +128,6 @@ Model::game_condition(double time, int lives)
     return game_over;
 }
 
-// void
-// Model::target_animation(int time, int gamemode) const
-// {
-//     int max_time = 0;
-//     switch (gamemode) {
-//     // EASY_MODE:
-//         max_time = 3000;  // 3 seconds
-//         break;
-//    // MEDIUM_MODE:
-//         max_time = 2000;  // 2 seconds
-//         break;
-//     // HARD_MODE:
-//         max_time = 1000;  // 1 second
-//         break;
-//     }
-//     double scale_factor = 1.0 - (static_cast<double>(time) / max_time);
-//
-//     target_sprite.set_scale_x(scale_factor);
-//     target_sprite.set_scale_y(scale_factor);
-//
-//
-// }
 ///--------------------------------------------------------------------------///
 
 Target::Target(int size)
@@ -156,13 +139,12 @@ Target::Target(int radius, Position pos)
           target_radius(radius)
 {}
 
-
-
-
 ///--------------------------------------------------------------------------///
+//Zero Constructor
 Button::Button(int size)
         : Button(size,size,{size,size})
 {}
+//Main Constructor
 Button::Button(int width, int height, Position pos)
         : e_button{pos.left_by(width * 1.5).up_by(height * 1.25)},
           m_button{pos.left_by(width * 1.5)},
@@ -172,6 +154,7 @@ Button::Button(int width, int height, Position pos)
           dims(width,height)
 {};
 
+//Tells us whether the player clicks on the buttons
 bool
 Button::button_click(Position pos, Position button_pos) const
 {
@@ -193,6 +176,7 @@ Button::button_click(Position pos, Position button_pos) const
     int t_easy = button_pos.y;
     int b_easy = button_pos.y + button.height;
 
+    // Conditions to check if hits button
     bool cond1 = r_cursor < l_easy;
     bool cond2 = l_cursor > r_easy;
     bool cond3 = t_cursor > b_easy;
@@ -207,24 +191,28 @@ Button::button_click(Position pos, Position button_pos) const
     return result;
 }
 
+//Easy button
 bool
 Button::easy_click(Position pos) const
 {
     return (button_click(pos,e_button));
 }
 
+//Medium button
 bool
 Button::med_click(Position pos) const
 {
     return (button_click(pos,m_button));
 }
 
+//Hard button
 bool
 Button::hard_click(Position pos) const
 {
     return (button_click(pos,h_button));
 }
 
+//Back to main menu button
 bool
 Button::back_click(Position pos) const
 {
