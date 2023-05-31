@@ -28,12 +28,6 @@ public:
 
     void target_click(ge211::Sprite_set&, Position mouse_posn);
 
-    int radius; //Radius of Target
-
-    Position target_pos; //Position of target
-
-    bool target_clicked;//Tells us if target is clicked
-
     double time; //timer
 
     int lives;//number of lives in the game
@@ -56,13 +50,15 @@ public:
 
     bool showMainMenu;
 
+    Target target_;
+
 
 
 private:
     //Model const& model_;
     Model model_;
     Button button_;
-    Target target_;
+    //Target target_;
 
     int gamemode = 0;
 

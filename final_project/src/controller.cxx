@@ -47,13 +47,13 @@ Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
         view_.click_count += 1;
     }
 
-    if (!view_.target_clicked) {//initialize game to 30 seconds and 3 lives and start game
+    if (!view_.target_.target_clicked) {//initialize game to 30 seconds and 3 lives and start game
         view_.time = 30;
         view_.lives = 3;
     }
 
-    if (model_.hit_target(view_.target_pos, click, view_.radius)) {//if target clicked
-        view_.target_clicked = true;
+    if (view_.target_.hit_target(click)) {//if target clicked
+        view_.target_.target_clicked = true;
 
         // Updates amount of hits
         view_.hit_count += 1;
@@ -68,11 +68,11 @@ Controller::on_frame(double dt)
         view_.count_down -= dt * 0.85;
     }
 
-    if (!model_.game_condition(view_.time,view_.lives) && view_.target_clicked) {//game timer update
+    if (!model_.game_condition(view_.time,view_.lives) && view_.target_.target_clicked) {//game timer update
         view_.time -= dt;
     }
 
-    if (view_.target_clicked && !model_.hit_target(view_.target_pos, click, view_.radius)) {//target shrink timer
+    if (view_.target_.target_clicked && !view_.target_.hit_target(click)) {//target shrink timer
         view_.shrink += dt;
     }
 }

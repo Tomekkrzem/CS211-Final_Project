@@ -10,10 +10,7 @@ using Sprite_set = ge211::Sprite_set;
 static int const scene_multiplier = 12;
 
 View::View(Model const& model)
-        : radius(0), /// Make this a target class
-          target_pos{620,320}, /// Make this a target class
-          target_clicked(false), /// Make this a target class
-          time(0),
+        : time(0),
           lives(0),
           shrink(0), /// Maybe make this a target class
           score(0),
@@ -25,13 +22,13 @@ View::View(Model const& model)
           differential(0),
           showMainMenu(true),
 
+          target_(0,{620,320},false),
+
           model_(model),
 
           button_(model_.Dims().width,model_.Dims().height,
                   {initial_window_dimensions().width / 2,
                    initial_window_dimensions().height / 2}),
-
-          target_(0,{620,320},false),
 
           menu_sprite(initial_window_dimensions(),{0,25,51}),
 
@@ -275,7 +272,7 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_y(differential);
 
             // Updates corresponding hit box of target
-            radius = target_sprite.dimensions().width * (differential) * 2;
+            target_.target_radius = target_sprite.dimensions().width * (differential) * 2;
 
         } else if (gamemode == 2 && !model_.game_condition(time,lives)) {
 
@@ -285,7 +282,7 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_x(differential)
                     .set_scale_y(differential);
 
-            radius = target_sprite.dimensions().width * (differential) * 2;
+            target_.target_radius = target_sprite.dimensions().width * (differential) * 2;
 
         } else if (gamemode == 1 && !model_.game_condition(time,lives)) {
 
@@ -295,7 +292,7 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_x(differential)
                     .set_scale_y(differential);
 
-            radius = target_sprite.dimensions().width * (differential) * 2;
+            target_.target_radius = target_sprite.dimensions().width * (differential) * 2;
         }
 
         // Checks that target disappears and game is not over to subtract a life
@@ -324,7 +321,7 @@ View::draw(ge211::Sprite_set& set)
         }
 
         // Render the target sprite which shrinks at target_pos
-        set.add_sprite(target_sprite, target_pos, 6, target);
+        set.add_sprite(target_sprite, target_.target_pos, 6, target);
     }
 }
 
@@ -431,7 +428,7 @@ View::button_input(ge211::Sprite_set& set, View::Position mouse_posn)
         if (button_.back_click(mouse_posn)) {
             showMainMenu = true;
             gamemode = 0;
-            target_clicked = false;
+            target_.target_clicked = false;
             score = 0;
             click_count = 0;
             hit_count = 0;
@@ -455,16 +452,16 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
     if (!showMainMenu && count_down <= 0) {
 
         // Checks that the first target is clicked to start game
-        if (target_clicked) {
+        if (target_.target_clicked) {
 
             // Checks that the target is hit, or that the target completely disappears
-            if (model_.hit_target(target_pos, mouse_posn, radius) || (differential <= 0)) {
+            if (target_.hit_target(mouse_posn) || (differential <= 0)) {
 
                 // Sets Target Pos to a random position on the game board
-                target_pos = model_.random_spot(radius, initial_window_dimensions());
+                target_.target_pos = model_.random_spot(target_.target_radius, initial_window_dimensions());
 
                 // Set Target Click to true
-                target_clicked = true;
+                target_.target_clicked = true;
 
                 // Resets the shrink timer
                 shrink = 0;
@@ -478,7 +475,6 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
 
             }
         }
-
 
         int count = time;
 
