@@ -1,7 +1,8 @@
 #include "model.hxx"
 #include <catch.hxx>
 
-//Tests whether mouse clicks on easy button, in which it updates the game to the easy game mode.
+//Tests whether mouse clicks on easy button,
+// in which it updates the game to the easy game mode.
 TEST_CASE("Easy Mode Test")
 {
     Model model_(100,100);
@@ -91,7 +92,8 @@ TEST_CASE("Easy Mode Test")
     CHECK_FALSE(model_.game_condition(time,lives));
 }
 
-//Tests whether mouse clicks on medium button, in which it updates the game to the medium game mode.
+//Tests whether mouse clicks on medium button,
+// in which it updates the game to the medium game mode.
 TEST_CASE("Medium Mode Test")
 {
     Model model_(100,100);
@@ -271,8 +273,10 @@ TEST_CASE("Hard Mode Test")
     CHECK_FALSE(model_.game_condition(time,lives));
 }
 
-//Creates a target and mouse position that are not equal, then move mouse position to target position, so hit_target
-// is true, then the target position becomes random using random function. Repeat.
+//Creates a target and mouse position that are not equal,
+// then move mouse position to target position, so hit_target
+// is true, then the target position becomes random
+// using random function. Repeat.
 TEST_CASE("Hit Recognition Test")
 {
     Model model_(100,100);
@@ -289,7 +293,8 @@ TEST_CASE("Hit Recognition Test")
 
     if (target_.hit_target(mouse_pos)) {
         target_.target_clicked = true;
-        expected_target.target_pos = model_.random_spot(target_.target_radius,model_.Dims());
+        expected_target.target_pos = model_.random_spot
+                (target_.target_radius,model_.Dims());
     }
 
     CHECK_FALSE(target_.hit_target(mouse_pos));
@@ -301,7 +306,8 @@ TEST_CASE("Hit Recognition Test")
 
     if (target_.hit_target(mouse_pos)) {
         target_.target_clicked = true;
-        expected_target.target_pos = model_.random_spot(target_.target_radius,model_.Dims());
+        expected_target.target_pos = model_.random_spot
+                (target_.target_radius,model_.Dims());
     }
 
     CHECK(target_.hit_target(mouse_pos));
@@ -314,7 +320,8 @@ TEST_CASE("Hit Recognition Test")
     mouse_pos = {target_.target_pos.x - 10, target_.target_pos.y};
 
     if (target_.hit_target(mouse_pos)) {
-        expected_target.target_pos = model_.random_spot(target_.target_radius,model_.Dims());
+        expected_target.target_pos = model_.random_spot
+                (target_.target_radius,model_.Dims());
     }
 
     CHECK_FALSE(target_.hit_target(mouse_pos));
@@ -325,7 +332,8 @@ TEST_CASE("Hit Recognition Test")
     mouse_pos = {mouse_pos.x + 14, mouse_pos.y - 2};
 
     if (target_.hit_target(mouse_pos)) {
-        expected_target.target_pos = model_.random_spot(target_.target_radius,model_.Dims());
+        expected_target.target_pos = model_.random_spot
+                (target_.target_radius,model_.Dims());
     }
 
     CHECK(target_.hit_target(mouse_pos));
@@ -359,7 +367,8 @@ TEST_CASE("Game Over Test 1")
 
     if (target_.hit_target(mouse_pos)) {
         target_.target_clicked = true;
-        target_.target_pos = model_.random_spot(target_.target_radius,model_.Dims());
+        target_.target_pos = model_.random_spot
+                (target_.target_radius,model_.Dims());
         lives = 3;
         time = 10;
     }

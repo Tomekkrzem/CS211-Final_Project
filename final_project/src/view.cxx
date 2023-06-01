@@ -12,7 +12,7 @@ static int const scene_multiplier = 12;
 View::View(Model const& model)
         : time(0),
           lives(0),
-          shrink(0), /// Maybe make this a target class
+          shrink(0),
           score(0),
           click_count(0),
           hit_count(0),
@@ -175,11 +175,18 @@ View::draw(ge211::Sprite_set& set)
 
         // Configures all the Name Builders
         name_builder1.color({238,232,170}) << "Score: " <<  final_score;
+
         name_builder2.color({240,213,208}) << "Game Over";
-        name_builder3.color({238,232,170}) << "Accuracy: " << setprecision(3) << accuracy << "%";
+
+        name_builder3.color({238,232,170}) << "Accuracy: " << setprecision(3)
+        << accuracy << "%";
+
         name_builder4.color({238,232,170}) << "Lives: "  << lives;
+
         name_builder5.color({238,232,170}) << "Hits: " << hit_count;
-        name_builder6.color({238,232,170}) << "Misses: " << (click_count - hit_count);
+
+        name_builder6.color({238,232,170}) << "Misses: "
+        << (click_count - hit_count);
 
 
         // Updates all Game Over text sprite
@@ -249,7 +256,8 @@ View::draw(ge211::Sprite_set& set)
 
         // Adds Count Down in approximate center
         set.add_sprite(count_down_sprite,
-                       center.left_by(model_.Dims().width).up_by(model_.Dims().height * 4) , 6);
+                       center.left_by(model_.Dims().width)
+                       .up_by(model_.Dims().height * 4) , 6);
     }
 
     // Checks that Main Menu is off and Count Down ended
@@ -272,7 +280,8 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_y(differential);
 
             // Updates corresponding hit box of target
-            target_.target_radius = target_sprite.dimensions().width * (differential) * 2;
+            target_.target_radius = target_sprite
+                    .dimensions().width * (differential) * 2;
 
         } else if (gamemode == 2 && !model_.game_condition(time,lives)) {
 
@@ -282,7 +291,8 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_x(differential)
                     .set_scale_y(differential);
 
-            target_.target_radius = target_sprite.dimensions().width * (differential) * 2;
+            target_.target_radius = target_sprite
+                    .dimensions().width * (differential) * 2;
 
         } else if (gamemode == 1 && !model_.game_condition(time,lives)) {
 
@@ -292,7 +302,8 @@ View::draw(ge211::Sprite_set& set)
                     .set_scale_x(differential)
                     .set_scale_y(differential);
 
-            target_.target_radius = target_sprite.dimensions().width * (differential) * 2;
+            target_.target_radius = target_sprite
+                    .dimensions().width * (differential) * 2;
         }
 
         // Checks that target disappears and game is not over to subtract a life
@@ -458,7 +469,8 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
             if (target_.hit_target(mouse_posn) || (differential <= 0)) {
 
                 // Sets Target Pos to a random position on the game board
-                target_.target_pos = model_.random_spot(target_.target_radius, initial_window_dimensions());
+                target_.target_pos = model_.random_spot
+                        (target_.target_radius, initial_window_dimensions());
 
                 // Set Target Click to true
                 target_.target_clicked = true;
@@ -485,7 +497,8 @@ View::target_click(ge211::Sprite_set& set, View::Position mouse_posn)
         game_timer.reconfigure(timer);
 
         // Displays the timer which counts down in the corner of the screen
-        set.add_sprite(game_timer,{initial_window_dimensions().width - 100, 0}, 5);
+        set.add_sprite(game_timer,
+                       {initial_window_dimensions().width - 100, 0}, 5);
 
     }
 

@@ -26,12 +26,16 @@
   <component name="ChangeListManager">
     <list default="true" id="89638f63-b9b2-4357-82a6-682d391300a1" name="Changes" comment="Code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/.cs211/lib/ge211/Resources/target_.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/final_project/src/controller.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/controller.cxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/model.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.cxx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_project/src/model.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/src/view.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.cxx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_project/test/model_test.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/test/model_test.cxx" afterDir="false" />
     </list>
-    <list id="c51e31a4-373a-433a-a6de-1752d5174721" name="Changes by user" comment="Changes by user" />
+    <list id="c51e31a4-373a-433a-a6de-1752d5174721" name="Changes by user" comment="Changes by user">
+      <change beforePath="$PROJECT_DIR$/final_project/src/model.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/model.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/src/view.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/src/view.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final_project/test/model_test.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/final_project/test/model_test.cxx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +60,38 @@
         <option name="url" value="https://github.com/Tomekkrzem/CS211-FInal-2.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/final_project/src/view.cxx">
+      <ranges>
+        <range start1="14" end1="15" start2="14" end2="15" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="156" end1="157" start2="156" end2="158" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
+        <range start1="177" end1="177" start2="178" end2="179" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="178" end1="179" start2="180" end2="184" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="180" end1="180" start2="185" end2="186" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="181" end1="182" start2="187" end2="190" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="251" end1="252" start2="259" end2="261" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="274" end1="275" start2="283" end2="285" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="284" end1="285" start2="294" end2="296" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="294" end1="295" start2="305" end2="307" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="369" end1="370" start2="381" end2="383" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
+        <range start1="460" end1="461" start2="473" end2="475" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="487" end1="488" start2="501" end2="503" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/final_project/test/model_test.cxx">
+      <ranges>
+        <range start1="3" end1="4" start2="3" end2="5" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="93" end1="94" start2="94" end2="96" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="183" end1="184" start2="185" end2="187" changelist="c51e31a4-373a-433a-a6de-1752d5174721" />
+        <range start1="273" end1="275" start2="276" end2="280" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="291" end1="292" start2="296" end2="298" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="303" end1="304" start2="309" end2="311" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="316" end1="317" start2="323" end2="325" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="327" end1="328" start2="335" end2="337" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+        <range start1="361" end1="362" start2="370" end2="372" changelist="89638f63-b9b2-4357-82a6-682d391300a1" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -149,7 +185,7 @@
       <workItem from="1685496478533" duration="242000" />
       <workItem from="1685500894117" duration="11241000" />
       <workItem from="1685566822176" duration="591000" />
-      <workItem from="1685586182175" duration="6449000" />
+      <workItem from="1685586182175" duration="7436000" />
     </task>
     <task id="LOCAL-00001" summary="Code">
       <created>1685085166266</created>
@@ -249,7 +285,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685511291241</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Code">
+      <created>1685592704043</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1685592704043</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Code">
+      <created>1685592707521</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1685592707521</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
