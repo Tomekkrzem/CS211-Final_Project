@@ -43,7 +43,7 @@ Controller::on_mouse_up(ge211::Mouse_button, ge211::Posn<int> pos)
 {
     click = pos;
 
-    if (!model_.game_condition(view_.time,view_.lives) && !view_.showMainMenu){//count clicks
+    if (!model_.game_condition(view_.time,view_.lives) && !view_.showMainMenu && (view_.count_down <= 0)){//count clicks
         view_.click_count += 1;
     }
 

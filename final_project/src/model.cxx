@@ -77,41 +77,6 @@ Model::random_spot(int radius, Dimensions dims) const
     return {x,y};
 }
 
-//Tells us whether the player clicks on the target
-bool Model::hit_target(Position target_pos, Position pos, int radius) const
-{
-    bool result;
-
-    Rectangle target(target_pos.x, target_pos.y,
-                     radius / 2, radius / 2);
-
-    // Cursor edges
-    int r_cursor = pos.x + (scene_multiplier / 2);
-    int l_cursor = pos.x - (scene_multiplier / 2);
-    int t_cursor = pos.y - (scene_multiplier / 2);
-    int b_cursor = pos.y + (scene_multiplier / 2);
-
-    // Easy Button Edges
-    int r_easy = target_pos.x + target.width;
-    int l_easy = target_pos.x;
-    int t_easy = target_pos.y;
-    int b_easy = target_pos.y + target.height;
-
-    // Conditions to check if hits target
-    bool cond1 = r_cursor < l_easy;
-    bool cond2 = l_cursor > r_easy;
-    bool cond3 = t_cursor > b_easy;
-    bool cond4 = b_cursor < t_easy;
-
-    if (cond1 || cond2 || cond3 || cond4){
-        result = false;
-    } else {
-        result = true;
-    }
-
-    return result;
-}
-
 //Tells whether game ends or not based on lives and time
 bool
 Model::game_condition(double time, int lives)

@@ -45,8 +45,6 @@ public:
 
     Position random_spot(int radius, Dimensions dims) const;
 
-    bool hit_target(Position,Position, int radius) const;
-
     bool game_condition (double time, int lives);
 
 private:
