@@ -70,7 +70,8 @@ Model::operator[](Position pos) const
 //Find random position on screen
 Model::Position
 Model::random_spot(int radius, Dimensions dims) const
-{//https://stackoverflow.com/questions/26086128/generate-different-random-coordinates for random position
+{//https://stackoverflow.com/questions/26086128/generate-different-random-coordinates
+    // for random position
     int x = rand() % (dims.width - radius);//also makes sure the target position is not set out of bounds
     int y = rand() % (dims.height - radius);
 

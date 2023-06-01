@@ -183,7 +183,8 @@ TEST_CASE("Medium Mode Test")
     CHECK_FALSE(model_.game_condition(time,lives));
 }
 
-//Tests whether mouse clicks on hard button, in which it updates the game to the hard game mode.
+//Tests whether mouse clicks on hard button,
+//in which it updates the game to the hard game mode.
 TEST_CASE("Hard Mode Test")
 {
     Model model_(100,100);

@@ -154,7 +154,8 @@ View::draw(ge211::Sprite_set& set)
         // Adds Game Over Background
         set.add_sprite(game_over_screen,{0,0},7);
 
-        // Checks if Hits are Greater that Clicks which occur from occasional double render
+        // Checks if Hits are Greater that Clicks which occur
+        // from occasional double render
         if (hit_count > click_count) {
             click_count = hit_count;
         }
@@ -378,7 +379,8 @@ View::draw_input(ge211::Sprite_set& set, ge211::Posn<int> mouse_posn)
     }
 
 
-    // If Game is Over and Main Menu is off, create hovering effect for Back to Main Menu Button
+    // If Game is Over and Main Menu is off, create hovering effect
+    // for Back to Main Menu Button
     if (!showMainMenu && model_.game_condition(time,lives)) {
         if (button_.back_click(mouse_posn)) {
             set.add_sprite(back_hover, button_.back_button, 9);
