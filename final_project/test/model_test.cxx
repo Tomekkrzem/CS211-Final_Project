@@ -334,7 +334,7 @@ TEST_CASE("Hit Recognition Test")
     CHECK_FALSE(target_.target_pos == expected_target.target_pos);
 }
 
-//Checks if game is over if time runs out and lives run out
+//Checks if game is over if time runs out or lives run out
 TEST_CASE("Game Over Test 1")
 {
     Model model_(100,100);
